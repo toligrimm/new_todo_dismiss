@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class ToDoList1 extends StatefulWidget {
   static final String tag = 'todo-list-use';
-  final List<String> _todoList1 = [];
-  final TextEditingController _textFieldController = TextEditingController();
+  // final List<String> _todoList1 = [];
+  // final TextEditingController _textFieldController = TextEditingController();
 
   ToDoList1({Key? key}) : super(key: key);
   @override
