@@ -46,9 +46,9 @@ class _ToDoList1State extends State<ToDoList1> {
       _todoList.add(Todo1('', 1));
     });
   }
-  void clearText() {
-    _textController.clear();
-  }
+  // void clearText() {
+  //   _textController.clear();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,6 @@ class _ToDoList1State extends State<ToDoList1> {
                     children: <Widget>[
                       Expanded(
                         child: TextFormField(
-                          controller: _textController,
                           decoration: InputDecoration(
                             hintText: 'Ввести новое значение',
                             hintStyle: TextStyle(
@@ -93,7 +92,7 @@ class _ToDoList1State extends State<ToDoList1> {
                               print(text);
                             });
                           },
-
+                          controller: _textController,
                         ),
                       ),
                       _textController.text.length>0?new IconButton(icon: new Icon (Icons.clear, color: Colors.pinkAccent,), onPressed: (){
