@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
 }
 
 class ToDoList1 extends StatefulWidget {
-  static final String tag = 'single-list-use';
+  static final String tag = 'todo-list-use';
 
   const ToDoList1({Key? key}) : super(key: key);
   @override
@@ -49,6 +49,7 @@ class Todo1 {
 class _ToDoList1State extends State<ToDoList1> {
   List<Todo1> _todoList = [];
   Map<int, Todo1> _todoMap = {};
+  bool showTextFormField = false;
 
   void _addNewStudent() {
     setState(() {
@@ -67,13 +68,15 @@ class _ToDoList1State extends State<ToDoList1> {
         onPressed: () {
           if (_todoList.length != 0) {
             _todoList.forEach((student) => print(student.toString()));
+            setState(() {
+              showTextFormField = true;
+            });
           } else {
             print('map list empty');
           }
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: Text('Single Map Use'),
         actions: <Widget>[
