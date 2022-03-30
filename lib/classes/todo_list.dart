@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class ToDoList1 extends StatefulWidget {
   static final String tag = 'todo-list-use';
-  final List<String> _todoList1 = [];
-  final TextEditingController _textFieldController = TextEditingController();
+  // final List<String> _todoList1 = [];
+  // final TextEditingController _textFieldController = TextEditingController();
 
   ToDoList1({Key? key}) : super(key: key);
   @override
@@ -39,90 +39,73 @@ class Todo1 {
 class _ToDoList1State extends State<ToDoList1> {
   List<Todo1> _todoList = [];
   Map<int, Todo1> _todoMap = {};
+  final TextEditingController _textController = TextEditingController();
 
-  void _addNewStudent() {
+  void _addNewTodo() {
     setState(() {
       _todoList.add(Todo1('', 1));
     });
+  }
+  void clearText() {
+    _textController.clear();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //   floatingActionButton: FloatingActionButton(
-      //   elevation: 10,
-      //   // onPressed: () => _displayDialog(context),
-      //   tooltip: 'Добавить задачу',
-      //   child: const Icon(Icons.add),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.done,
+          Icons.add,
           color: Colors.white,
         ),
         onPressed: () {
-          if (_todoList.length != 0) {
-            _todoList.forEach((todos) => print(todos.toString()));
-          } else {
-            print('map list empty');
-          }
+          _addNewTodo();
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: Text('ToDo List'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              _addNewStudent();
-            },
-            child: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-          )
-        ],
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+
+      body: Scrollbar(
         child: Builder(
           builder: (context) {
-            print("List : ${_todoList.toString()}");
-            _todoMap = _todoList.asMap();
-            print("MAP : ${_todoMap.toString()}");
             return ListView.builder(
               itemCount: _todoMap.length,
               itemBuilder: (context, position) {
-                print('Item Position $position');
                 return Padding(
-                  padding: EdgeInsets.only(top: 5.0),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
                         child: TextFormField(
-                          initialValue: _todoMap[position]!.name.length != 0
-                              ? _todoMap[position]!.name
-                              : '',
-                          onFieldSubmitted: (name) {
-                            setState(() {
-                              _todoList[position].name = name;
-                            });
-                          },
+                          controller: _textController,
                           decoration: InputDecoration(
-                            hintText: 'enter student name',
+                            hintText: 'Ввести новое значение',
                             hintStyle: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black26,
                             ),
                           ),
+                          onChanged: (text){
+                            setState(() {
+                              print(text);
+                            });
+                          },
+
                         ),
                       ),
-                      IconButton(
+                      _textController.text.length>0?new IconButton(icon: new Icon (Icons.clear, color: Colors.pinkAccent,), onPressed: (){
+                        setState(() {
+                          _textController.clear();
+                        });
+
+                      }, )
+                      :IconButton(
                         icon: Icon(
-                          Icons.delete,
-                          color: Colors.red,
+                          Icons.delete_outline,
+                          color: Colors.pinkAccent,
                         ),
                         onPressed: () {
                           setState(() {
