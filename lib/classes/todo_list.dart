@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ToDoList1 extends StatefulWidget {
-  static final String tag = 'todo-list-use';
+  static const String tag = 'todo-list-use';
 
   const ToDoList1({Key? key}) : super(key: key);
   @override
   _ToDoList1State createState() => _ToDoList1State();
+
 }
 
 class Todo1 {
@@ -33,11 +34,12 @@ class Todo1 {
 }
 
 class _ToDoList1State extends State<ToDoList1> {
+  final TextEditingController _textController = new TextEditingController();
   List<Todo1> _todoList = [];
   Map<int, Todo1> _todoMap = {};
   bool showTextFormField = false;
 
-  void _addNewStudent() {
+  void _addNewTodo() {
     setState(() {
       _todoList.add(Todo1('', 1));
     });
@@ -48,7 +50,7 @@ class _ToDoList1State extends State<ToDoList1> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _addNewStudent();
+          _addNewTodo();
         },
         child: Icon(
           Icons.add,
@@ -60,7 +62,6 @@ class _ToDoList1State extends State<ToDoList1> {
         title: Text('ToDo List'),
       ),
       body: Container(
-
         child: Builder(
           builder: (context) {
             print("List : ${_todoList.toString()}");
@@ -79,7 +80,7 @@ class _ToDoList1State extends State<ToDoList1> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
-                          child: TextFormField(
+                          child: TextField(
                             decoration: InputDecoration(
                               hintText: 'Введите значение',
                               hintStyle: TextStyle(
@@ -87,8 +88,20 @@ class _ToDoList1State extends State<ToDoList1> {
                                 color: Colors.black26,
                               ),
                             ),
+                            onChanged: (text){
+                              setState(() {
+                                print(text);
+                              });
+                            },
+                            // controller: _textController,
                           ),
                         ),
+                        _textController.text.length>0? IconButton(icon: new Icon(Icons.clear), onPressed: () {
+                          setState(() {
+                            _textController.clear();
+                          });
+                        },):
+
                         IconButton(
                           icon: Icon(
                             Icons.delete_outline,
