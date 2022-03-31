@@ -34,7 +34,6 @@ class Todo1 {
 }
 
 class _ToDoList1State extends State<ToDoList1> {
-  final TextEditingController _textController = new TextEditingController();
   List<Todo1> _todoList = [];
   Map<int, Todo1> _todoMap = {};
   bool showTextFormField = false;
@@ -73,14 +72,14 @@ class _ToDoList1State extends State<ToDoList1> {
                 padding: EdgeInsets.only(top: 10),
                 itemCount: _todoMap.length,
                 itemBuilder: (context, position) {
-                  print('Item Position $position');
                   return Padding(
                     padding: EdgeInsets.fromLTRB(10, 3, 3, 5),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
+
                       children: <Widget>[
                         Expanded(
-                          child: TextField(
+                          child: TextFormField(
                             decoration: InputDecoration(
                               hintText: 'Введите значение',
                               hintStyle: TextStyle(
@@ -88,20 +87,9 @@ class _ToDoList1State extends State<ToDoList1> {
                                 color: Colors.black26,
                               ),
                             ),
-                            onChanged: (text){
-                              setState(() {
-                                print(text);
-                              });
-                            },
-                            // controller: _textController,
+
                           ),
                         ),
-                        _textController.text.length>0? IconButton(icon: new Icon(Icons.clear), onPressed: () {
-                          setState(() {
-                            _textController.clear();
-                          });
-                        },):
-
                         IconButton(
                           icon: Icon(
                             Icons.delete_outline,
