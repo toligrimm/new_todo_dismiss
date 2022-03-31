@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-
 class ToDoList1 extends StatefulWidget {
-  static final String tag = 'todo-list-use';
-  // final List<String> _todoList1 = [];
-  // final TextEditingController _textFieldController = TextEditingController();
+  static const String tag = 'todo-list-use';
 
-  ToDoList1({Key? key}) : super(key: key);
+  const ToDoList1({Key? key}) : super(key: key);
   @override
   _ToDoList1State createState() => _ToDoList1State();
 
@@ -37,10 +34,12 @@ class Todo1 {
 }
 
 class _ToDoList1State extends State<ToDoList1> {
+  final TextEditingController _textController = new TextEditingController();
   List<Todo1> _todoList = [];
   Map<int, Todo1> _todoMap = {};
+  bool showTextFormField = false;
 
-  void _addNewStudent() {
+  void _addNewTodo() {
     setState(() {
       _todoList.add(Todo1('', 1));
     });
@@ -49,135 +48,87 @@ class _ToDoList1State extends State<ToDoList1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //   floatingActionButton: FloatingActionButton(
-      //   elevation: 10,
-      //   // onPressed: () => _displayDialog(context),
-      //   tooltip: 'Добавить задачу',
-      //   child: const Icon(Icons.add),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _addNewTodo();
+        },
         child: Icon(
-          Icons.done,
+          Icons.add,
           color: Colors.white,
         ),
-        onPressed: () {
-          if (_todoList.length != 0) {
-            _todoList.forEach((todos) => print(todos.toString()));
-          } else {
-            print('map list empty');
-          }
-        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: Text('ToDo List'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              _addNewStudent();
-            },
-            child: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-          )
-        ],
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
         child: Builder(
           builder: (context) {
             print("List : ${_todoList.toString()}");
             _todoMap = _todoList.asMap();
-            print("MAP : ${_todoMap.toString()}");
-            return ListView.builder(
-              itemCount: _todoMap.length,
-              itemBuilder: (context, position) {
-                print('Item Position $position');
-                return Padding(
-                  padding: EdgeInsets.only(top: 5.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: TextFormField(
-                          initialValue: _todoMap[position]!.name.length != 0
-                              ? _todoMap[position]!.name
-                              : '',
-                          onFieldSubmitted: (name) {
-                            setState(() {
-                              _todoList[position].name = name;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            hintText: 'enter student name',
-                            hintStyle: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.black26,
+            print("MAP : ${_todoMap.toString()}"); //не удалять
+            return Scrollbar(
+              isAlwaysShown: true,
+              child: ListView.builder(
+                padding: EdgeInsets.only(top: 10),
+                itemCount: _todoMap.length,
+                itemBuilder: (context, position) {
+                  print('Item Position $position');
+                  return Padding(
+                    padding: EdgeInsets.fromLTRB(10, 3, 3, 5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Введите значение',
+                              hintStyle: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.black26,
+                              ),
                             ),
+                            onChanged: (text){
+                              setState(() {
+                                print(text);
+                              });
+                            },
+                            // controller: _textController,
                           ),
                         ),
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {
+                        _textController.text.length>0? IconButton(icon: new Icon(Icons.clear), onPressed: () {
                           setState(() {
-                            _todoList.removeAt(position);
+                            _textController.clear();
                           });
-                        },
-                      )
-                    ],
-                  ),
-                );
-              },
+                        },):
+
+                        IconButton(
+                          icon: Icon(
+                            Icons.delete_outline,
+                            color: Colors.pink,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _todoList.removeAt(position);
+                            });
+                          },
+                        ),
+                        // IconButton(
+                        //   icon: Icon(Icons.edit),
+                        //   onPressed: (){
+                        //     setState(() {
+                        //       _todoList.
+                        //     });
+                        //   },)
+                      ],
+                    ),
+                  );
+                },
+              ),
             );
           },
         ),
       ),
     );
   }
-  // Future<Future> _displayDialog(BuildContext context) async {
-  //   return showDialog(
-  //       barrierColor: Colors.pink.shade50,
-  //       context: context,
-  //       builder: (BuildContext context) {
-  //         return AlertDialog(
-  //           title: const Text('Добавить задачу в список'),
-  //           content: TextField(
-  //             autofocus: true,
-  //             // enabled: editable,
-  //             controller: _textFieldController,
-  //             decoration: const InputDecoration(
-  //               hintText: 'Ввести здесь',
-  //               errorText: 'Не должно быть пустым',
-  //             ),
-  //             onEditingComplete: (){
-  //               // After editing is complete, make the editable false
-  //               setState(() {
-  //               });
-  //             },
-  //           ),
-  //           actions: <Widget>[
-  //             TextButton(
-  //                 autofocus: true,
-  //                 child: const Text('Добавить'),
-  //                 onPressed: () {
-  //                   Navigator.of(context).pop();
-  //                   _addTodoItem(_textFieldController.text);
-  //                 }
-  //             ),
-  //             TextButton(
-  //               child: const Text('Отменить'),
-  //               onPressed: () {
-  //                 Navigator.of(context).pop();
-  //               },
-  //             )
-  //           ],
-  //         );
-  //       });
-  // }
 }
