@@ -16,6 +16,7 @@ class _ToDoList1State extends State<ToDoList1> {
   Map<int, Todo1> _todoMap = {};
   bool showTextFormField = false;
 
+
   void _addNewTodo() {
     setState(() {
       _todoList.add(Todo1('', 1));
@@ -31,17 +32,26 @@ class _ToDoList1State extends State<ToDoList1> {
           children: [
             const DrawerHeader(
               child: Text('Меню'),
-              decoration: BoxDecoration(color: Colors.pinkAccent,),
+              decoration: BoxDecoration(
+                color: Colors.pink,),
             ),
             ListTile(
               title: const Text('Мой профиль'),
               onTap: () {
-                Navigator.pop(context);
+                // Navigator.pop(context);
               },
+              tileColor: Colors.lightBlueAccent,
+              textColor: Colors.white,
+              trailing: Icon(Icons.person, color: Colors.white,),
+
+
             ),
             ListTile(
               title: const Text('Settings'),
+              tileColor: Colors.orange,
               onTap: (){},
+              trailing: Icon(Icons.settings, color: Colors.white,),
+
             )
           ],
         ),
