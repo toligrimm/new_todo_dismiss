@@ -7,15 +7,12 @@ class ToDoList1 extends StatefulWidget {
   const ToDoList1({Key? key}) : super(key: key);
   @override
   _ToDoList1State createState() => _ToDoList1State();
-
 }
-
 
 class _ToDoList1State extends State<ToDoList1> {
   List<Todo1> _todoList = [];
   Map<int, Todo1> _todoMap = {};
   bool showTextFormField = false;
-
 
   void _addNewTodo() {
     setState(() {
@@ -28,12 +25,21 @@ class _ToDoList1State extends State<ToDoList1> {
     return Scaffold(
       drawer: Drawer(
         child: ListView(
+          shrinkWrap: true,
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              child: Text('Меню'),
-              decoration: BoxDecoration(
-                color: Colors.pink,),
+            const SizedBox(
+              height: 90,
+              child: DrawerHeader(
+                child: Text(
+                  'Меню',
+                  style: TextStyle(
+                  color: Colors.white,
+                ),),
+                decoration: BoxDecoration(
+                  color: Colors.pink,
+                ),
+              ),
             ),
             ListTile(
               title: const Text('Мой профиль'),
@@ -42,21 +48,23 @@ class _ToDoList1State extends State<ToDoList1> {
               },
               tileColor: Colors.lightBlueAccent,
               textColor: Colors.white,
-              trailing: Icon(Icons.person, color: Colors.white,),
-
-
+              trailing: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
             ),
             ListTile(
               title: const Text('Settings'),
               tileColor: Colors.orange,
-              onTap: (){},
-              trailing: Icon(Icons.settings, color: Colors.white,),
-
+              onTap: () {},
+              trailing: Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
             )
           ],
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addNewTodo();
@@ -86,7 +94,6 @@ class _ToDoList1State extends State<ToDoList1> {
                     padding: EdgeInsets.fromLTRB(10, 3, 3, 5),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-
                       children: <Widget>[
                         Expanded(
                           child: TextFormField(
@@ -97,7 +104,6 @@ class _ToDoList1State extends State<ToDoList1> {
                                 color: Colors.black26,
                               ),
                             ),
-
                           ),
                         ),
                         IconButton(
