@@ -1,3 +1,4 @@
+import 'package:dismiss/classes/todo.dart';
 import 'package:flutter/material.dart';
 
 class ToDoList1 extends StatefulWidget {
@@ -9,29 +10,6 @@ class ToDoList1 extends StatefulWidget {
 
 }
 
-class Todo1 {
-  String _name;
-  int _sessionId;
-
-  Todo1(this._name, this._sessionId);
-
-  String get name => _name;
-
-  set name(String value) {
-    _name = value;
-  }
-
-  int get sessionId => _sessionId;
-
-  set sessionId(int value) {
-    _sessionId = value;
-  }
-
-  @override
-  String toString() {
-    return 'todo $_name from session $_sessionId';
-  }
-}
 
 class _ToDoList1State extends State<ToDoList1> {
   List<Todo1> _todoList = [];
@@ -47,6 +25,28 @@ class _ToDoList1State extends State<ToDoList1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              child: Text('Меню'),
+              decoration: BoxDecoration(color: Colors.pinkAccent,),
+            ),
+            ListTile(
+              title: const Text('Мой профиль'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Settings'),
+              onTap: (){},
+            )
+          ],
+        ),
+      ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addNewTodo();
