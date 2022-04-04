@@ -7,7 +7,9 @@ import '../menu/my_settings.dart';
 
 class ToDoList1 extends StatefulWidget {
   static const String tag = 'todo-list-use';
+
   const ToDoList1({Key? key}) : super(key: key);
+
   @override
   _ToDoList1State createState() => _ToDoList1State();
 }
@@ -37,37 +39,59 @@ class _ToDoList1State extends State<ToDoList1> {
                 child: Text(
                   'Меню',
                   style: TextStyle(
-                  color: Colors.white,
-                ),),
+                    color: Colors.white,
+                  ),
+                ),
                 decoration: BoxDecoration(
                   color: Colors.pink,
                 ),
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.person, color: Colors.white,),
+              trailing: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
               title: const Text('Мой профиль'),
               tileColor: Colors.lightBlueAccent,
               textColor: Colors.white,
-              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const MyProfilePage()),);},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyProfilePage()),
+                );
+              },
             ),
             ListTile(
               title: const Text('Чат'),
               tileColor: Colors.orange,
               textColor: Colors.white,
-              trailing: Icon(Icons.chat, color: Colors.white,),
-              onTap: (){Navigator.push(
+              trailing: const Icon(
+                Icons.chat,
+                color: Colors.white,
+              ),
+              onTap: () {
+                Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ChatPage()),);},
+                  MaterialPageRoute(builder: (context) => const ChatPage()),
+                );
+              },
             ),
             ListTile(
               title: const Text('Настройки'),
               tileColor: Colors.green,
               textColor: Colors.white,
-              trailing: Icon(Icons.settings, color: Colors.white,),
-              onTap: (){Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsPage()),);},
+              trailing: Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
+              },
             )
           ],
         ),
