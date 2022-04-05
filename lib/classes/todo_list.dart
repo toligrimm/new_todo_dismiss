@@ -30,7 +30,6 @@ class _ToDoList1State extends State<ToDoList1> {
     return Scaffold(
       drawer: Drawer(
         child: ListView(
-          shrinkWrap: true,
           padding: EdgeInsets.zero,
           children: [
             const SizedBox(
@@ -47,6 +46,7 @@ class _ToDoList1State extends State<ToDoList1> {
                 ),
               ),
             ),
+
             ListTile(
               trailing: Icon(
                 Icons.person,
@@ -63,6 +63,7 @@ class _ToDoList1State extends State<ToDoList1> {
                 );
               },
             ),
+
             ListTile(
               title: const Text('Чат'),
               tileColor: Colors.orange,
@@ -93,21 +94,21 @@ class _ToDoList1State extends State<ToDoList1> {
                 );
               },
             )
-          ],
+            ],
         ),
-      ),
+        ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addNewTodo();
         },
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: Text('ToDo List'),
+        title: const Text('ToDo List'),
       ),
       body: Container(
         child: Builder(
@@ -118,17 +119,17 @@ class _ToDoList1State extends State<ToDoList1> {
             return Scrollbar(
               isAlwaysShown: true,
               child: ListView.builder(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 itemCount: _todoMap.length,
                 itemBuilder: (context, position) {
                   return Padding(
-                    padding: EdgeInsets.fromLTRB(10, 3, 3, 5),
+                    padding: const EdgeInsets.fromLTRB(10, 3, 3, 5),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: 'Введите значение',
                               hintStyle: TextStyle(
                                 fontSize: 16.0,
@@ -138,7 +139,7 @@ class _ToDoList1State extends State<ToDoList1> {
                           ),
                         ),
                         IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.delete_outline,
                             color: Colors.pink,
                           ),
