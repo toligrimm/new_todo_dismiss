@@ -1,9 +1,9 @@
 import 'package:dismiss/menu/my_profile.dart';
 import 'package:dismiss/classes/todo.dart';
 import 'package:flutter/material.dart';
-
 import '../menu/my_chat.dart';
 import '../menu/my_settings.dart';
+
 
 class ToDoList1 extends StatefulWidget {
   static const String tag = 'todo-list-use';
@@ -15,7 +15,7 @@ class ToDoList1 extends StatefulWidget {
 }
 
 class _ToDoList1State extends State<ToDoList1> {
-  List<Todo1> _todoList = [];
+  final List<Todo1> _todoList = [];
   Map<int, Todo1> _todoMap = {};
   bool showTextFormField = false;
 
@@ -24,6 +24,7 @@ class _ToDoList1State extends State<ToDoList1> {
       _todoList.add(Todo1('', 1));
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class _ToDoList1State extends State<ToDoList1> {
             ),
 
             ListTile(
-              trailing: Icon(
+              trailing: const Icon(
                 Icons.person,
                 color: Colors.white,
               ),
@@ -83,7 +84,7 @@ class _ToDoList1State extends State<ToDoList1> {
               title: const Text('Настройки'),
               tileColor: Colors.green,
               textColor: Colors.white,
-              trailing: Icon(
+              trailing: const Icon(
                 Icons.settings,
                 color: Colors.white,
               ),
@@ -120,6 +121,7 @@ class _ToDoList1State extends State<ToDoList1> {
               isAlwaysShown: true,
               child: ListView.builder(
                 padding: const EdgeInsets.only(top: 10),
+
                 itemCount: _todoMap.length,
                 itemBuilder: (context, position) {
                   return Padding(
