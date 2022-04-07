@@ -9,6 +9,7 @@ class MyProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Мой Профиль'),
       ),
+      backgroundColor: Colors.pink,
       body: Center(
         child: ElevatedButton(
           onPressed: () {
