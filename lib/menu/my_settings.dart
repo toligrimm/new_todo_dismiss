@@ -9,14 +9,20 @@ class SettingsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Настройки'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Иди назад!'),
-        ),
+      body: Container(
+        child: _buildImage(),
       ),
     );
   }
+
+  Widget _buildImage() => Container(
+    alignment: Alignment.center,
+    child: Card(
+      child:
+      Image.asset(
+        'assets/images/man1.jpg',
+        fit: BoxFit.fill,
+      ),
+    ),
+);
 }
