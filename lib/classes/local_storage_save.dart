@@ -1,87 +1,62 @@
-// import 'dart:async';
-// import 'dart:io';
-//
 // import 'package:flutter/material.dart';
-// import 'package:path_provider/path_provider.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 //
 //
-// class CounterStorage {
-//   Future<String> get _localPath async {
-//     final directory = await getApplicationDocumentsDirectory();
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({Key? key, required this.title}) : super(key: key);
 //
-//     return directory.path;
-//   }
-//
-//   Future<File> get _localFile async {
-//     final path = await _localPath;
-//     return File('$path/counter.txt');
-//   }
-//
-//   Future<int> readCounter() async {
-//     try {
-//       final file = await _localFile;
-//
-//       // Read the file
-//       final contents = await file.readAsString();
-//
-//       return int.parse(contents);
-//     } catch (e) {
-//       // If encountering an error, return 0
-//       return 0;
-//     }
-//   }
-//
-//   Future<File> writeCounter(int counter) async {
-//     final file = await _localFile;
-//
-//     // Write the file
-//     return file.writeAsString('$counter');
-//   }
-// }
-//
-// class FlutterDemo extends StatefulWidget {
-//   const FlutterDemo({Key? key, required this.storage}) : super(key: key);
-//
-//   final CounterStorage storage;
+//   final String title;
 //
 //   @override
-//   _FlutterDemoState createState() => _FlutterDemoState();
+//   _MyHomePageState createState() => _MyHomePageState();
 // }
 //
-// class _FlutterDemoState extends State<FlutterDemo> {
-//   int _counter = 0;
+// class _MyHomePageState extends State<MyHomePage> {
+//   int _saver = 0;
 //
 //   @override
 //   void initState() {
 //     super.initState();
-//     widget.storage.readCounter().then((int value) {
-//       setState(() {
-//         _counter = value;
-//       });
+//     _loadSaved();
+//   }
+//
+//   void _loadSaved() async {
+//     final prefs = await SharedPreferences.getInstance();
+//     setState(() {
+//       _saver = (prefs.getInt('counter') ?? 0);
 //     });
 //   }
 //
-//   Future<File> _incrementCounter() {
+//   void _incrementSaved() async {
+//     final prefs = await SharedPreferences.getInstance();
 //     setState(() {
-//       _counter++;
+//       _saver = (prefs.getInt('counter') ?? 0) + 1;
+//       prefs.setInt('counter', _saver);
 //     });
-//
-//     return widget.storage.writeCounter(_counter);
 //   }
 //
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
 //       appBar: AppBar(
-//         title: const Text('Reading and Writing Files'),
+//         title: Text(widget.title),
 //       ),
 //       body: Center(
-//         child: Text(
-//           'Button tapped $_counter time${_counter == 1 ? '' : 's'}.',
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             const Text(
+//               'You have pushed the button this many times:',
+//             ),
+//             Text(
+//               '$_saver',
+//               style: Theme.of(context).textTheme.headline4,
+//             ),
+//           ],
 //         ),
 //       ),
 //       floatingActionButton: FloatingActionButton(
-//         onPressed: _incrementCounter,
+//         onPressed: _incrementSaved,
 //         tooltip: 'Increment',
 //         child: const Icon(Icons.add),
 //       ),
