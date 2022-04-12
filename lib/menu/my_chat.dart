@@ -38,7 +38,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('count'),
+        title: const Text('count'),
       ),
       body: Center(
         child: Column(
