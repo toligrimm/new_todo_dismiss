@@ -111,69 +111,25 @@ class _MainPageState extends State<MainPage> {
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           children: <Widget>[
-            Container(
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 5.0,
-                  )
-                ]
-              ),
-            child: IconButton(
+            IconButton(
             onPressed: () {
               Navigator.push(context,MaterialPageRoute(builder: (context) => const MyProfilePage()),);},
               icon: Image.asset('assets/images/cat1.jpg'),
-              iconSize: 50,
             ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => const ToDoList1()),);},
+              icon: Image.asset('assets/images/fatty.jpg'),
             ),
-            Container(
-              decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 5.0,
-                    )
-                  ]
-              ),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => const ToDoList1()),);},
-                icon: Image.asset('assets/images/peach.jpg'),
-                iconSize: 50,
-              ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => const ChatPage()),);},
+              icon: Image.asset('assets/images/lovely.jpg'),
             ),
-            Container(
-              decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 5.0,
-                    )
-                  ]
-              ),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => const ChatPage()),);},
-                icon: Image.asset('assets/images/lovely.jpg'),
-                iconSize: 50,
-              ),
-            ),
-            Container(
-              decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 5.0,
-                    )
-                  ]
-              ),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => const SettingsPage()),);},
-                icon: Image.asset('assets/images/fatty.jpg'),
-                iconSize: 50,
-              ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => const SettingsPage()),);},
+              icon: Image.asset('assets/images/peach.jpg'),
             ),
           ],
         ),
