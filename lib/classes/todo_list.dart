@@ -1,12 +1,15 @@
+import 'dart:convert';
+
 import 'package:dismiss/menu/my_profile.dart';
 import 'package:dismiss/classes/todo.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../menu/my_chat.dart';
 import '../menu/my_settings.dart';
 
 
 class ToDoList1 extends StatefulWidget {
-  static const String tag = 'todo-list-use';
+
 
   const ToDoList1({Key? key}) : super(key: key);
 
@@ -15,6 +18,7 @@ class ToDoList1 extends StatefulWidget {
 }
 
 class _ToDoList1State extends State<ToDoList1> {
+  late SharedPreferences sharedPreferences;
   final List<Todo1> _todoList = [];
   Map<int, Todo1> _todoMap = {};
   bool showTextFormField = false;
@@ -25,79 +29,24 @@ class _ToDoList1State extends State<ToDoList1> {
     });
   }
 
+  @override
+  void initState() {
+    loadSharedPreferences();
+    super.initState();
+  }
+
+  void loadSharedPreferences() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  TextEditingController controller = TextEditingController();
+
+  String text = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const SizedBox(
-              height: 90,
-              child: DrawerHeader(
-                child: Text(
-                  'Меню',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.pink,
-                ),
-              ),
-            ),
 
-            ListTile(
-              trailing: const Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-              title: const Text('Мой профиль'),
-              tileColor: Colors.lightBlueAccent,
-              textColor: Colors.white,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const MyProfilePage()),
-                );
-              },
-            ),
-
-            ListTile(
-              title: const Text('Чат'),
-              tileColor: Colors.orange,
-              textColor: Colors.white,
-              trailing: const Icon(
-                Icons.chat,
-                color: Colors.white,
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ChatPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Настройки'),
-              tileColor: Colors.green,
-              textColor: Colors.white,
-              trailing: const Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SettingsPage()),
-                );
-              },
-            )
-            ],
-        ),
-        ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addNewTodo();
@@ -121,7 +70,6 @@ class _ToDoList1State extends State<ToDoList1> {
               isAlwaysShown: true,
               child: ListView.builder(
                 padding: const EdgeInsets.only(top: 10),
-                
                 itemCount: _todoMap.length,
                 itemBuilder: (context, position) {
                   return Padding(
@@ -151,6 +99,20 @@ class _ToDoList1State extends State<ToDoList1> {
                             });
                           },
                         ),
+                        // IconButton(onPressed: () {
+                        //   setState(() {
+                        //
+                        //   });
+                        //   saveMapToSP({
+                        //     'Введите текст':controller.text,
+                        //   },
+                        //   'jsonData');
+                        // },
+                        //     icon: const Icon(Icons.done,),
+                        // ),
+                        // const Divider(),
+                        // IconButton(onPressed: () => loadData(), icon: Icon(Icons.visibility,),),
+                        // Text(text),
                       ],
                     ),
                   );
@@ -161,5 +123,45 @@ class _ToDoList1State extends State<ToDoList1> {
         ),
       ),
     );
+  }
+
+  void loadData() {
+    Map data = getMapFromSP('jsonData');
+    setState(() {
+      controller.text = data['Значение'];
+    });
+  }
+
+  void saveStringToSP(String key, String value){
+    if(value.isNotEmpty && key.isNotEmpty) {
+      sharedPreferences.setString(key, value);
+    }
+
+  }
+  String getStringFromSP(String key){
+    if(key.isNotEmpty){
+      String? value = sharedPreferences.getString(key);
+      if(value != null) {
+        return value;
+      } else {
+        return '';
+      }
+    }else{
+      return '';
+    }
+  }
+
+  void saveMapToSP(Map map, String key){
+    String jsonString = jsonEncode(map);
+    saveStringToSP(key, jsonString);
+  }
+
+  Map getMapFromSP(String key){
+    String string = getStringFromSP(key);
+    if(string != null && string.isNotEmpty) {
+      return jsonDecode(string);
+    } else {
+      return {};
+    }
   }
 }
