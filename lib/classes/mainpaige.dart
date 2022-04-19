@@ -1,8 +1,5 @@
 import 'package:dismiss/classes/todo_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../menu/my_chat.dart';
 import '../menu/my_profile.dart';
 import '../menu/my_settings.dart';
@@ -114,15 +111,13 @@ class _MainPageState extends State<MainPage> {
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           children: <Widget>[
-            Column(
-              children: <Widget> [ElevatedButton.icon(
+           ElevatedButton.icon(
                 onPressed: () {
                   Navigator.push(context,MaterialPageRoute(builder: (context) => const MyProfilePage()),);},
                 icon: Image.asset('assets/images/cat1.jpg', width: 120, height: 120,),
                 label: const Text('profile'),
             ),
-              ]
-            ),
+
             ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(context,MaterialPageRoute(builder: (context) => const ToDoList1()),);},
