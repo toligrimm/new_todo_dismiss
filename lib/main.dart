@@ -3,7 +3,7 @@ import 'classes/mainpaige.dart';
 
 
 
-void main()=>runApp(new MyApp());
+void main()=>runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -20,8 +20,7 @@ class SettingsPage extends StatelessWidget {
     child: Card(
       child:
       Image.asset(
-        'assets/images/man1.jpg',
-        fit: BoxFit.fill,
+        'assets/images/man1.jpg',        fit: BoxFit.fill,
       ),
     ),
 );

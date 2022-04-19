@@ -111,25 +111,36 @@ class _MainPageState extends State<MainPage> {
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           children: <Widget>[
-            IconButton(
+            
+            ElevatedButton.icon(
             onPressed: () {
               Navigator.push(context,MaterialPageRoute(builder: (context) => const MyProfilePage()),);},
               icon: Image.asset('assets/images/cat1.jpg'),
+              label: const Text('profile'),
+              style: ElevatedButton.styleFrom(
+                maximumSize: const Size(100, 100),
+              ),
             ),
-            IconButton(
+
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(context,MaterialPageRoute(builder: (context) => const ToDoList1()),);},
-              icon: Image.asset('assets/images/fatty.jpg'),
+                icon: Image.asset('assets/images/fatty.jpg'),
+                label: const Text('todo'),
             ),
-            IconButton(
+
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(context,MaterialPageRoute(builder: (context) => const ChatPage()),);},
               icon: Image.asset('assets/images/lovely.jpg'),
+              label: const Text('chat'),
             ),
-            IconButton(
+
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(context,MaterialPageRoute(builder: (context) => const SettingsPage()),);},
               icon: Image.asset('assets/images/peach.jpg'),
+              label: const Text('settings'),
             ),
           ],
         ),
