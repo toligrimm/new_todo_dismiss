@@ -116,7 +116,7 @@ class _MainPageState extends State<MainPage> {
             onPressed: () {
               Navigator.push(context,MaterialPageRoute(builder: (context) => const MyProfilePage()),);},
               icon: Image.asset('assets/images/cat1.jpg'),
-              label: const Text('profile'),
+              label: const Text('profilepage'),
               style: ElevatedButton.styleFrom(
                 maximumSize: const Size(100, 100),
               ),
