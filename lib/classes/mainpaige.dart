@@ -16,7 +16,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('toligrimm.kz'),
+        title: const Text('Main Page'),
         backgroundColor: Colors.yellow,
       ),
       drawer: Drawer(
@@ -111,36 +111,89 @@ class _MainPageState extends State<MainPage> {
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           children: <Widget>[
-           ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => const MyProfilePage()),);},
-                icon: Image.asset('assets/images/cat1.jpg', width: 120, height: 120,),
-                label: const Text('profile'),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyProfilePage()),
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/cat1.jpg',
+                    width: 120,
+                    height: 120,
+                  ),
+                  const Text('profile'),
+                ],
+              ),
             ),
 
-            ElevatedButton.icon(
+            ElevatedButton(
               onPressed: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => const ToDoList1()),);},
-                icon: Image.asset('assets/images/fatty.jpg', width: 120, height: 120,),
-                label: const Text('todo'),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ToDoList1()),
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/fatty.jpg',
+                    width: 120,
+                    height: 120,
+                  ),
+                  const Text('todo'),
+                ],
+              ),
             ),
 
-            ElevatedButton.icon(
+            ElevatedButton(
               onPressed: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => const ChatPage()),);},
-              icon: Image.asset('assets/images/lovely.jpg', width: 120, height: 120,),
-              label: const Text('chat'),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ChatPage()),
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/lovely.jpg',
+                    width: 120,
+                    height: 120,
+                  ),
+                  const Text('chat'),
+                ],
+              ),
             ),
-
-            ElevatedButton.icon(
+            ElevatedButton(
               onPressed: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => const SettingsPage()),);},
-              icon: Image.asset('assets/images/peach.jpg', width: 120, height: 120),
-              label: const Text('settings'),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/peach.jpg',
+                    width: 120,
+                    height: 120,
+                  ),
+                  const Text('settings'),
+                ],
+              ),
             ),
           ],
         ),
-      )
+      ),
+
     );
   }
 }
