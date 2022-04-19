@@ -163,7 +163,7 @@ class _MainPageState extends State<MainPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/man1.jpg',
+                    'assets/images/lovely.jpg',
                     width: 120,
                     height: 120,
                   ),
